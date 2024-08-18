@@ -49,7 +49,8 @@ public class IndexController {
     @ResponseBody
     @GetMapping("/vmess")
     public String v2ray(){
-        String path= "config.json";
+//        String path= "config.json";
+        String path="/etc/v2ray/config.json";
         ObjectMapper om = new ObjectMapper();
         JsonNode jsonNode;
         try {
