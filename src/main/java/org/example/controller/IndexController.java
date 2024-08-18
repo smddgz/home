@@ -13,7 +13,6 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
 
@@ -44,7 +43,7 @@ public class IndexController {
      *   "id": "e2fa7441-2c05-4431-969b-736d475adf76",
      *   "tls": "none"
      * }
-     * @return
+     * @return string
      */
     @ResponseBody
     @GetMapping("/vmess")
