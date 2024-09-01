@@ -43,10 +43,12 @@ public class IndexController {
     @GetMapping("/restart")
     public String restart(){
         try {
-            Runtime.getRuntime().exec(restartScript+"home.sh");
+            Runtime.getRuntime().exec(new String[]{restartScript + "home.sh"}).waitFor();
             return "success";
         } catch (IOException e) {
             return "error";
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
