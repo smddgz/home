@@ -19,7 +19,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
+import java.net.URLEncoder;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -35,7 +37,8 @@ public class IndexController {
     }
 
     private static final String restartScript="/root/";
-    private static final String filepath="/root/file/";
+//    private static final String filepath="/root/file/";
+    private static final String filepath="d:/test/";
     @ResponseBody
     @GetMapping("/restart")
     public String restart(){
@@ -80,10 +83,11 @@ public class IndexController {
 
     @GetMapping("/download")
     public void download(HttpServletResponse response, String name){
-        response.addHeader(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename="+name);
 //        response.addHeader(HttpHeaders.CONTENT_DISPOSITION,"inline");
         try {
+            response.addHeader(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename="+ URLEncoder.encode(name, StandardCharsets.UTF_8));
             byte[] bytes = Files.readAllBytes(Paths.get(filepath, name));
+            response.addHeader(HttpHeaders.CONTENT_LENGTH,Integer.toString(bytes.length));
             response.getOutputStream().write(bytes);
         } catch (IOException e) {
             e.printStackTrace();
