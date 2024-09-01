@@ -10,7 +10,7 @@ public class MethodTest {
 
     @Test
     void urlCode() {
-        String a = URLEncoder.encode("AAA", StandardCharsets.UTF_8);
+        String a = URLEncoder.encode("新建文本文档.txt", StandardCharsets.UTF_8);
         System.out.println(a);
     }
 
