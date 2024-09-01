@@ -5,7 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-<img src="bg.jpg">
+<form method="post" enctype="multipart/form-data" action="/upload">
+    <input type="file" name="file">
+    <input type="submit" value="upload">
+</form>
+
+<table>
+    <tr th:each="item:${files}">
+        <td th:text="${item.getName()}"></td>
+        <td><a th:href="'/download?name='+${item.getName()}">download</a> </td>
+    </tr>
+</table>
 </body>
 <style>
 

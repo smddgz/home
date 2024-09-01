@@ -1,2 +1,11 @@
 server:
   port: 80
+
+spring:
+  thymeleaf:
+    cache: false
+
+  servlet:
+    multipart:
+      max-file-size: 5000MB
+      max-request-size: 5000MB

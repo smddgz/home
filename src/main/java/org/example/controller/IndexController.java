@@ -3,15 +3,25 @@ package org.example.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.HashMap;
@@ -23,11 +33,50 @@ public class IndexController {
     public LocalDateTime time(){
         return LocalDateTime.now();
     }
-
+    String filepath="D:/test/";
     @GetMapping
-    public String index(){
-        return "index";
+    public ModelAndView index(){
+        File file = new File(filepath);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+        ModelAndView mv = new ModelAndView("index");
+        mv.addObject("files",file.listFiles());
+        return mv;
     }
+
+    @PostMapping("/upload")
+    public void upload(HttpServletResponse response,MultipartFile file) throws IOException {
+        System.out.println(LocalDateTime.now());
+        File path = new File(filepath);
+        if (!path.exists()){
+            path.mkdirs();
+        }
+        ModelAndView mv = new ModelAndView("index");
+        String originalFilename = file.getOriginalFilename();
+        try {
+            file.transferTo(new File(filepath+originalFilename));
+            mv.addObject("msg","success");
+        } catch (IOException e) {
+            mv.addObject("msg","error");
+        }
+        mv.addObject("files",path.listFiles());
+        response.sendRedirect("/");
+        System.out.println(LocalDateTime.now());
+    }
+
+    @GetMapping("/download")
+    public void download(HttpServletResponse response, String name){
+        response.addHeader(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename="+name);
+//        response.addHeader(HttpHeaders.CONTENT_DISPOSITION,"inline");
+        try {
+            byte[] bytes = Files.readAllBytes(Paths.get(filepath, name));
+            response.getOutputStream().write(bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * {
