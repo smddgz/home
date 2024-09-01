@@ -36,9 +36,19 @@ public class IndexController {
         return LocalDateTime.now();
     }
 
+    @GetMapping("/delete")
+    public void delete(HttpServletResponse response,String name){
+        new File(filepath+name).delete();
+        try {
+            response.sendRedirect("/");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static final String restartScript="/root/";
-    private static final String filepath="/root/file/";
-//    private static final String filepath="d:/test/";
+//    private static final String filepath="/root/file/";
+    private static final String filepath="d:/test/";
     @ResponseBody
     @GetMapping("/restart")
     public String restart(){
