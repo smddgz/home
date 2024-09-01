@@ -33,7 +33,20 @@ public class IndexController {
     public LocalDateTime time(){
         return LocalDateTime.now();
     }
-    String filepath="D:/test/";
+
+    private static final String restartScript="/root/";
+    private static final String filepath="/root/file/";
+    @ResponseBody
+    @GetMapping("/restart")
+    public String restart(){
+        try {
+            Runtime.getRuntime().exec(restartScript+"home.sh");
+            return "success";
+        } catch (IOException e) {
+            return "error";
+        }
+    }
+
     @GetMapping
     public ModelAndView index(){
         File file = new File(filepath);
