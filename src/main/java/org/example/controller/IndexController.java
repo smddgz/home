@@ -30,8 +30,8 @@ import java.util.HashMap;
 
 @Controller
 public class IndexController {
-//    @ResponseBody
-//    @GetMapping("/time")
+    @ResponseBody
+    @GetMapping("/time")
     public LocalDateTime time(){
         return LocalDateTime.now();
     }
