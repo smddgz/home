@@ -47,8 +47,8 @@ public class IndexController {
     }
 
     private static final String restartScript="/root/";
-//    private static final String filepath="/root/file/";
-    private static final String filepath="d:/test/";
+    private static final String filepath="/root/file/";
+//    private static final String filepath="d:/test/";
     @ResponseBody
     @GetMapping("/restart")
     public String restart(){
