@@ -10,8 +10,7 @@ public class MethodTest {
 
     @Test
     void urlCode() {
-        String a = URLEncoder.encode("新建文本文档.txt", StandardCharsets.UTF_8);
-        System.out.println(a);
+
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {

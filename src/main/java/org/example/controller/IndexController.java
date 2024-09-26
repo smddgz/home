@@ -97,7 +97,7 @@ public class IndexController {
     public void download(HttpServletResponse response, String name){
 //        response.addHeader(HttpHeaders.CONTENT_DISPOSITION,"inline");
         try {
-            response.addHeader(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename="+ URLEncoder.encode(name, StandardCharsets.UTF_8));
+            response.addHeader(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename="+ URLEncoder.encode(name, StandardCharsets.UTF_8.name()));
             byte[] bytes = Files.readAllBytes(Paths.get(filepath, name));
             response.addHeader(HttpHeaders.CONTENT_LENGTH,Integer.toString(bytes.length));
             response.getOutputStream().write(bytes);
