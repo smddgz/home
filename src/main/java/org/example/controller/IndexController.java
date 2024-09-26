@@ -142,6 +142,8 @@ public class IndexController {
         } catch (UnknownHostException e) {
             return "UnKnow host error";
         }
+
+        hostAddress="23.26.254.176";
         HashMap<String, Object> map = new HashMap<>();
         map.put("v","2");
         map.put("ps","smddgz");
