@@ -3,9 +3,11 @@ package org.example.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.mockito.internal.util.StringUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -143,7 +145,9 @@ public class IndexController {
             return "UnKnow host error";
         }
 
-        hostAddress="23.26.254.176";
+        if(!StringUtils.hasText(hostAddress)||"localhost".equals(hostAddress)||"127.0.0.0".equals(hostAddress)){
+            hostAddress="smddgz.top";
+        }
         HashMap<String, Object> map = new HashMap<>();
         map.put("v","2");
         map.put("ps","smddgz");
