@@ -13,9 +13,7 @@ public class MethodTest {
 
     @Test
     void urlCode() throws UnknownHostException {
-        InetAddress loopbackAddress = Inet4Address.getLoopbackAddress();
-        InetAddress localHost = Inet4Address.getLocalHost();
-        System.out.println(localHost.getHostAddress());
+
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
