@@ -137,12 +137,11 @@ public class IndexController {
         } catch (IOException e) {
             return "io error";
         }
-        String hostAddress;
+        String hostAddress = null;
         try {
             InetAddress localHost = Inet4Address.getLocalHost();
             hostAddress = localHost.getHostAddress();
         } catch (UnknownHostException e) {
-            return "UnKnow host error";
         }
 
         if(!StringUtils.hasText(hostAddress)||"localhost".equals(hostAddress)||"127.0.0.0".equals(hostAddress)){
