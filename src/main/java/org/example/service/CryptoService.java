@@ -61,8 +61,8 @@ public class CryptoService extends ServiceImpl<CryptoMapper,CryptoInfo> {
         }
     }
 
-//    private static final String announcementUrl="https://www.binance.com/zh-CN/support/announcement/%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81%E5%8F%8A%E4%BA%A4%E6%98%93%E5%AF%B9%E4%B8%8A%E6%96%B0?c=48&navId=48";
-    private static final String announcementUrl1="http://localhost:9090/msg";
+    private static final String announcementUrl="https://www.binance.com/zh-CN/support/announcement/%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81%E5%8F%8A%E4%BA%A4%E6%98%93%E5%AF%B9%E4%B8%8A%E6%96%B0?c=48&navId=48";
+//    private static final String announcementUrl="http://localhost:9090/msg";
     private static CloseableHttpClient client = HttpClients.createDefault();
     public List<ArticleInfo> getAnnouncementInfo(String body){
         ArrayList<ArticleInfo> list = new ArrayList<>();
@@ -130,7 +130,7 @@ public class CryptoService extends ServiceImpl<CryptoMapper,CryptoInfo> {
 
     public String getAnnounceFromApi(){
         try {
-            HttpGet httpGet = new HttpGet(announcementUrl1);
+            HttpGet httpGet = new HttpGet(announcementUrl);
             CloseableHttpResponse response = client.execute(httpGet);
             byte[] bytes = EntityUtils.toByteArray(response.getEntity());
             return new String(bytes);
