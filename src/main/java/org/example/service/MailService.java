@@ -13,7 +13,7 @@ import java.util.Properties;
 
 @Service
 public class MailService {
-    public void sendMail() throws MessagingException {
+    public void sendMail(String text) throws MessagingException {
         String host = "smtp.163.com";
 // 登录用户名:
         String username = "moresleep2020@163.com";
@@ -43,7 +43,7 @@ public class MailService {
 // 设置邮件主题:
         message.setSubject("Hello", "UTF-8");
 // 设置邮件正文:
-        message.setText(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now()), "UTF-8");
+        message.setText(text, "UTF-8");
 // 发送:
         Transport.send(message);
     }
