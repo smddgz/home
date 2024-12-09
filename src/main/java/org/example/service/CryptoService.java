@@ -77,10 +77,9 @@ public class CryptoService extends ServiceImpl<CryptoMapper,CryptoInfo> {
                 JsonNode appState = jsonNode.get("appState");
                 JsonNode loader = appState.get("loader");
                 JsonNode dataByRouteId = loader.get("dataByRouteId");
-                JsonNode d9b2 = dataByRouteId.get("d9b2");
-                JsonNode catalogs = d9b2.get("catalogs");
-                JsonNode catalog = catalogs.get(0);
-                JsonNode articles = catalog.get("articles");
+                JsonNode d9b2 = dataByRouteId.get("d34e");
+                JsonNode catalogs = d9b2.get("catalogDetail");
+                JsonNode articles = catalogs.get("articles");
                 for (JsonNode article : articles) {
                     JsonNode info = om.reader().readTree(article.toString());
                     list.add(new ArticleInfo(info.get("title").toString(),info.get("releaseDate").asLong()));

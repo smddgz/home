@@ -23,7 +23,7 @@ public class AnnouncementJobConfig {
     public CronTriggerFactoryBean cronTriggerFactoryBean(JobDetail jobDetail){
         CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
         bean.setJobDetail(jobDetail);
-        bean.setCronExpression("0 * * * * ?");
+        bean.setCronExpression("0/5 * * * * ?");
         return bean;
     }
 
